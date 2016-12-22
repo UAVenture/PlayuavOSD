@@ -102,6 +102,7 @@ void parseMavlink(void)
                         apm_mav_type      = mavtype;
                         osd_mode = mavlink_msg_heartbeat_get_custom_mode(&msg);
                         base_mode = mavlink_msg_heartbeat_get_base_mode(&msg);
+                        autopilot_type = mavlink_msg_heartbeat_get_autopilot(&msg);
 
                         last_motor_armed = motor_armed;
                         motor_armed = base_mode & (1 << 7);

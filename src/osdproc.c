@@ -618,39 +618,44 @@ void RenderScreen(void)
 void draw_flight_mode(int x, int y, int xs, int ys, int va, int ha, int flags, int font)
 {
     char* mode_str = "unknown";
-    if (apm_mav_type != 1){ //ArduCopter MultiRotor or ArduCopter Heli
-        if (osd_mode == 0)       mode_str = "STAB"; //manual airframe angle with manual throttle
-        else if (osd_mode == 1)  mode_str = "ACRO"; //manual body-frame angular rate with manual throttle
-        else if (osd_mode == 2)  mode_str = "ALTH"; //manual airframe angle with automatic throttle
-        else if (osd_mode == 3)  mode_str = "AUTO"; //fully automatic waypoint control using mission commands
-        else if (osd_mode == 4)  mode_str = "GUID"; //fully automatic fly to coordinate or fly at velocity/direction using GCS immediate commands
-        else if (osd_mode == 5)  mode_str = "LOIT"; //automatic horizontal acceleration with automatic throttle
-        else if (osd_mode == 6)  mode_str = "RETL"; //automatic return to launching point
-        else if (osd_mode == 7)  mode_str = "CIRC"; //automatic circular flight with automatic throttle
-        //else if (osd_mode == 8)  mode_str = "POSI"; //Position: auto control
-        else if (osd_mode == 9)  mode_str = "LAND"; //automatic landing with horizontal position control
-        else if (osd_mode == 10) mode_str = "OFLO"; //deprecated
-        else if (osd_mode == 11) mode_str = "DRIF"; //semi-automous position, yaw and throttle control
-        else if (osd_mode == 13) mode_str = "SPRT"; //manual earth-frame angular rate control with manual throttle
-        else if (osd_mode == 14) mode_str = "FLIP"; //automatically flip the vehicle on the roll axis
-        else if (osd_mode == 15) mode_str = "ATUN"; //automatically tune the vehicle's roll and pitch gains
-        else if (osd_mode == 16) mode_str = "POSH"; //automatic position hold with manual override, with automatic throttle
-        else if (osd_mode == 17) mode_str = "BRAK"; //full-brake using inertial/GPS system, no pilot input
-    } else if(apm_mav_type == 1){ //ArduPlane
-        if (osd_mode == 0)       mode_str = "MANU"; //Manual
-        else if (osd_mode == 1)  mode_str = "CIRC"; //Circle
-        else if (osd_mode == 2)  mode_str = "STAB"; //Stabilize
-        else if (osd_mode == 3)  mode_str = "TRNG"; //Training
-        else if (osd_mode == 4)  mode_str = "ACRO"; //Acro
-        else if (osd_mode == 5)  mode_str = "FBWA"; //Fly_By_Wire_A
-        else if (osd_mode == 6)  mode_str = "FBWB"; //Fly_By_Wire_B
-        else if (osd_mode == 7)  mode_str = "CRUI"; //Cruise
-        else if (osd_mode == 8)  mode_str = "ATUN"; //Auto Tune
-        else if (osd_mode == 10) mode_str = "AUTO"; //Auto
-        else if (osd_mode == 11) mode_str = "RETL"; //Return to Launch
-        else if (osd_mode == 12) mode_str = "LOIT"; //Loiter
-        else if (osd_mode == 15) mode_str = "GUID"; //Guided
-        else if (osd_mode == 16) mode_str = "INIT"; //Initializing
+    if (autopilot_type == MAV_AUTOPILOT_PX4) {
+        // Handle PX4 modes
+
+    } else {
+        if (apm_mav_type != 1){ //ArduCopter MultiRotor or ArduCopter Heli
+            if (osd_mode == 0)       mode_str = "STAB"; //manual airframe angle with manual throttle
+            else if (osd_mode == 1)  mode_str = "ACRO"; //manual body-frame angular rate with manual throttle
+            else if (osd_mode == 2)  mode_str = "ALTH"; //manual airframe angle with automatic throttle
+            else if (osd_mode == 3)  mode_str = "AUTO"; //fully automatic waypoint control using mission commands
+            else if (osd_mode == 4)  mode_str = "GUID"; //fully automatic fly to coordinate or fly at velocity/direction using GCS immediate commands
+            else if (osd_mode == 5)  mode_str = "LOIT"; //automatic horizontal acceleration with automatic throttle
+            else if (osd_mode == 6)  mode_str = "RETL"; //automatic return to launching point
+            else if (osd_mode == 7)  mode_str = "CIRC"; //automatic circular flight with automatic throttle
+            //else if (osd_mode == 8)  mode_str = "POSI"; //Position: auto control
+            else if (osd_mode == 9)  mode_str = "LAND"; //automatic landing with horizontal position control
+            else if (osd_mode == 10) mode_str = "OFLO"; //deprecated
+            else if (osd_mode == 11) mode_str = "DRIF"; //semi-automous position, yaw and throttle control
+            else if (osd_mode == 13) mode_str = "SPRT"; //manual earth-frame angular rate control with manual throttle
+            else if (osd_mode == 14) mode_str = "FLIP"; //automatically flip the vehicle on the roll axis
+            else if (osd_mode == 15) mode_str = "ATUN"; //automatically tune the vehicle's roll and pitch gains
+            else if (osd_mode == 16) mode_str = "POSH"; //automatic position hold with manual override, with automatic throttle
+            else if (osd_mode == 17) mode_str = "BRAK"; //full-brake using inertial/GPS system, no pilot input
+        } else if(apm_mav_type == 1){ //ArduPlane
+            if (osd_mode == 0)       mode_str = "MANU"; //Manual
+            else if (osd_mode == 1)  mode_str = "CIRC"; //Circle
+            else if (osd_mode == 2)  mode_str = "STAB"; //Stabilize
+            else if (osd_mode == 3)  mode_str = "TRNG"; //Training
+            else if (osd_mode == 4)  mode_str = "ACRO"; //Acro
+            else if (osd_mode == 5)  mode_str = "FBWA"; //Fly_By_Wire_A
+            else if (osd_mode == 6)  mode_str = "FBWB"; //Fly_By_Wire_B
+            else if (osd_mode == 7)  mode_str = "CRUI"; //Cruise
+            else if (osd_mode == 8)  mode_str = "ATUN"; //Auto Tune
+            else if (osd_mode == 10) mode_str = "AUTO"; //Auto
+            else if (osd_mode == 11) mode_str = "RETL"; //Return to Launch
+            else if (osd_mode == 12) mode_str = "LOIT"; //Loiter
+            else if (osd_mode == 15) mode_str = "GUID"; //Guided
+            else if (osd_mode == 16) mode_str = "INIT"; //Initializing
+        }
     }
 
     write_string(mode_str, x, y, xs, ys, va, ha, flags, font);

@@ -32,6 +32,7 @@ uint32_t sys_start_time = 0;
 uint32_t heatbeat_start_time = 0;
 uint32_t armed_start_time = 0;
 uint32_t total_armed_time = 0;
+uint8_t autopilot_type = 0;
 
 /////////////////////////////////////////////////////////////////////////
 float osd_vbat_A = 0.0f;                 // Battery A voltage in milivolt
